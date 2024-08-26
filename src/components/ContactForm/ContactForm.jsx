@@ -1,6 +1,8 @@
-import css from "./ContactForm.module.css";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { addContact } from "../../redux/contactsSlice";
+import css from "./ContactForm.module.css";
 
 const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
@@ -21,7 +23,13 @@ const validationSchema = Yup.object({
     .required("Required"),
 });
 
-const ContactForm = ({ submitHandler }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const submitHandler = (e) => {
+    console.log(e);
+    dispatch(addContact(e.name, e.number));
+  };
   return (
     <Formik
       initialValues={initialValues}
