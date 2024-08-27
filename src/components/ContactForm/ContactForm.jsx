@@ -26,9 +26,11 @@ const validationSchema = Yup.object({
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e, { resetForm }) => {
     dispatch(addContact(e.name, e.number));
+    resetForm();
   };
+
   return (
     <Formik
       initialValues={initialValues}
