@@ -27,7 +27,6 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    console.log(e);
     dispatch(addContact(e.name, e.number));
   };
   return (
